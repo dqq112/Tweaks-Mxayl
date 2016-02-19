@@ -21,6 +21,7 @@
 	val TinPlate    = <Railcraft:part.plate:2>;
 	val CopperPlate = <Railcraft:part.plate:3>;
 	val IronWrench  = <OpenBlocks:wrench>;
+	val SteelIngot  = <ore:ingotSteel>;
 # Add item that you want to remove here!
 	var baneditems = 
 	[
@@ -36,7 +37,10 @@
 		<advgenerators:TurbineBladeBronze>,
 		<advgenerators:TurbineRotorBronze>,
 		<advgenerators:TurbineKitBronze>,
-		<Botania:pool:2>
+		<Botania:pool:2>,
+		<ImmersiveEngineering:stoneDecoration:1>,
+		<ImmersiveEngineering:stoneDecoration:2>,
+		<ImmersiveEngineering:stoneDecoration:6>
 	] as IItemStack[];
 	for i, item in baneditems 
 	{
@@ -53,6 +57,8 @@
 		val BlockIron   = <minecraft:iron_block>;
 		val Sand        = <ore:sand>;
 		val Glass       = <ore:blockGlass>;
+		val RedStone    = <ore:dustRedstone>;
+		val Stick       = <ore:stickWood>;
 	# Furnace Recipes
 		furnace.remove(Glass);
 		PhiloStone.removePhiloSmelting(<minecraft:glass>);
@@ -82,13 +88,15 @@
 	                                                               [null, null, null]]);
 # MagnetiCraft Modify
 	# Val Space
-		val CopperCable    = <Magneticraft:item.cable_low>;
-		val CopperCoil     = <Magneticraft:item.heavy_copper_coil>;
-		val CopperHeatCoil = <Magneticraft:item.heatcoil_copper>;
-		val IronHeatCoil   = <Magneticraft:item.heatcoil_iron>;
-		val WHeatCoil 	   = <Magneticraft:item.heatcoil_tungsten>;
-		val Diode 		   = <Magneticraft:diode>;
-		val MachineBlock   = <Magneticraft:machine_housing>;
+		val CopperCable       = <Magneticraft:item.cable_low>;
+		val CopperCableNormal = <Magneticraft:item.cable_medium>;
+		val CopperCableHigh   = <Magneticraft:item.cable_high>;
+		val CopperCoil        = <Magneticraft:item.heavy_copper_coil>;
+		val CopperHeatCoil    = <Magneticraft:item.heatcoil_copper>;
+		val IronHeatCoil      = <Magneticraft:item.heatcoil_iron>;
+		val WHeatCoil 	      = <Magneticraft:item.heatcoil_tungsten>;
+		val Diode 		      = <Magneticraft:diode>;
+		val MachineBlock      = <Magneticraft:machine_housing>;
 	# Normal Machine Recipes
 		recipes.remove(<Magneticraft:firebox>);
 		recipes.addShaped(<Magneticraft:firebox>,[[<Railcraft:part.plate:3>,<Magneticraft:item.heat_cable>,<Railcraft:part.plate:3>],
@@ -534,13 +542,53 @@
             recipes.addShaped(HighConvalenceDust,[[NormalConvalenceDust,NormalConvalenceDust,NormalConvalenceDust],
 			                   					  [NormalConvalenceDust,RoCHotItem,NormalConvalenceDust],
 			                   					  [NormalConvalenceDust,NormalConvalenceDust,NormalConvalenceDust]]);
-
 # Matter Overdrive Modify
 	# Val Space
 		val TritaniumPlate = <mo:tritanium_plate>;
-		val TritaniumIngot = <ore:ingotTraitanium>;
+		val TritaniumIngot = <mo:tritanium_ingot>;
+		val CircuitMK1     = <mo:isolinear_circuit>;
+		val Battery        = <mo:battery>;
+		val Dilithium      = <ore:gemDilithium>;
+		val Magnet         = <mo:s_magnet>;
 	# Item Modify
 		recipes.remove(TritaniumPlate);
 		Rolling.addShaped(TritaniumPlate * 4, [[TritaniumIngot, TritaniumIngot, null], 
 	                                           [TritaniumIngot, TritaniumIngot, null],
 	                                           [null, null, null]]);
+	    recipes.remove(CircuitMK1);
+	    recipes.addShaped(CircuitMK1,[[CopperCable,Diode,CopperCable]]);
+	    recipes.remove(Battery);
+	    recipes.addShaped(Battery,[[null,CopperCable,null],
+	                       		   [TritaniumPlate,Dilithium,TritaniumPlate],
+	                       		   [TritaniumPlate,Dilithium,TritaniumPlate]]);
+	    recipes.remove(Magnet);
+	    recipes.addShaped(Magnet,[[TritaniumPlate,RedStone,TritaniumPlate],
+	                       		  [CopperCable,CircuitMK1,CopperCable],
+	                       		  [TritaniumPlate,RedStone,TritaniumPlate]]);
+# IE Modify
+	# Val Space
+		val SteelComponent = <ImmersiveEngineering:material:12>;
+		val LowCoil        = <ImmersiveEngineering:coil>;
+		val NormalCoil     = <ImmersiveEngineering:coil:1>;
+		val HighCoil       = <ImmersiveEngineering:coil:2>;
+		val RadiatorBlock  = <ImmersiveEngineering:metalDecoration:4>;
+		val HeavyBlock     = <ImmersiveEngineering:metalDecoration:5>;
+		val GeneratorBlock = <ImmersiveEngineering:metalDecoration:6>;
+		val LightBlock     = <ImmersiveEngineering:metalDecoration:7>;
+	# Item Recipes
+		recipes.remove(SteelComponent);
+		recipes.addShaped(SteelComponent,[[SteelIngot,null,SteelIngot],
+		                   				  [null,TritaniumPlate,null],
+		                   				  [SteelIngot,null,SteelIngot]]);
+		recipes.remove(LowCoil);
+		recipes.addShaped(LowCoil,[[null,CopperCable,null],
+		                  		   [CopperCable,Stick,CopperCable],
+		                 		   [null,CopperCable,null]]);
+		recipes.remove(NormalCoil);
+		recipes.addShaped(NormalCoil,[[null,CopperCableNormal,null],
+		                  		      [CopperCableNormal,Stick,CopperCableNormal],
+		                 		      [null,CopperCableNormal,null]]);
+		recipes.remove(HighCoil);
+		recipes.addShaped(HighCoil,[[null,CopperCableHigh,null],
+		                  		    [CopperCableHigh,Stick,CopperCableHigh],
+		                 		    [null,CopperCableHigh,null]]);
