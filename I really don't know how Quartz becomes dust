@@ -1,0 +1,3 @@
+//Quartz Dust
+<ore:dustNetherQuartz>.add(<Magneticraft:item.dustQuartz>);
+mods.magneticraft.Grinder.addRecipe(<appliedenergistics2:item.ItemMultiMaterial>,<appliedenergistics2:item.ItemMultiMaterial:2>, null, 0.1, null, 0.1);
