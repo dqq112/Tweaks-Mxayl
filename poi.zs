@@ -1,5 +1,4 @@
-recipes.remove(<ImmersiveEngineering:metalDecoration>);
-recipes.addShaped(<ImmersiveEngineering:metalDecoration>*4,
-[[null,<ore:plateIron>,null],
-[<ore:plateIron>,<ImmersiveEngineering:tool>.anyDamage().transformDamage(4),<ore:plateIron>],
-[null,<ore:plateIron>,null]]);
+recipes.remove(<ImmersiveEngineering:metalDecoration:10>);
+recipes.addShaped(<ImmersiveEngineering:metalDecoration:10>*4,[[null,<ore:plateIron>,null],
+														                                   [<ore:plateIron>,<ImmersiveEngineering:tool>.withTag({hammerDmg:-1}),<ore:plateIron>],
+														                                   [null,<ore:plateIron>,null]]);
